@@ -3,6 +3,7 @@ const cssimport = require('gulp-cssimport');
 const extReplace = require('gulp-ext-replace');
 const plumber = require('gulp-plumber');
 const chokidar = require('chokidar');
+const autoprefixer = require('gulp-autoprefixer');
 
 const config = require('./includes/config.js');
 const utils = require('./includes/utilities.js');
@@ -20,6 +21,7 @@ function processCss() {
 
   return gulp.src(config.roots.css)
     .pipe(plumber(utils.errorHandler))
+    .pipe(autoprefixer())
     .pipe(cssimport())
     .pipe(extReplace('.css.liquid', '.css'))
     .pipe(extReplace('.scss.liquid', '.scss'))
